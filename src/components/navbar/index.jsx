@@ -5,7 +5,17 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link } from "react-router-dom";
 import logo from "../../assets/SecondHand1.png";
 import { FiUser, FiLogOut, FiList } from "react-icons/fi";
+import { useSelector } from "react-redux";
+// import { useEffect } from "react";
 function navbar() {
+  const token = useSelector((state) => state.auth.token);
+  console.log(token);
+
+//   useEffect(()=>{
+// // if(token){
+
+// // }
+//   },[])
   return (
     <>
       <Navbar

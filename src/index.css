@@ -380,7 +380,7 @@ fieldset[disabled] .btn-custom.active {
 .btnPrimary:hover {
   background-color: #591e91;
   color: white;
-  border: 1px solid #591e91;
+  border: 1px solid #8200fc;
 }
 
 .btnOutline {

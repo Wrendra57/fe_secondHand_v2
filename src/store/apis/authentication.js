@@ -7,7 +7,15 @@ const authApi = createApi({
   endpoints: (build) => ({
     register: build.mutation({
       query: ({ body }) => ({
-        url: `api/v1/users/register`,
+        url: `api/v1/register`,
+        method: "POST",
+        body: body,
+      }),
+      invalidatesTags: ["Auth"],
+    }),
+    login: build.mutation({
+      query: ({ body }) => ({
+        url: `api/v1/login`,
         method: "POST",
         body: body,
       }),
@@ -21,14 +29,7 @@ const authApi = createApi({
     //   }),
     //   invalidatesTags: ["Auth"],
     // }),
-    // login: build.mutation({
-    //   query: ({ body }) => ({
-    //     url: `api/v1/users/login`,
-    //     method: "POST",
-    //     body: body,
-    //   }),
-    //   invalidatesTags: ["Auth"],
-    // }),
+
     // authentication: build.mutation({
     //   query: ({ token }) => ({
     //     url: `api/v1/users`,
@@ -75,7 +76,7 @@ const authApi = createApi({
 export const {
   useRegisterMutation,
   // useVerificationMutation,
-  // useLoginMutation,
+  useLoginMutation,
   // useAuthenticationMutation,
   // useSearchUsersMutation,
   // useResendOtpMutation,
