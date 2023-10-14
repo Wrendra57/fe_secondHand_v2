@@ -67,3 +67,5 @@
 // 	   var newDateFormat = `${hari}, ${tanggal} ${bulan} ${tahun}`
 // 	return newDateFormat
 // }
+
+export const imgAllow = ["image/png", "image/jpg", "image/jpeg"];

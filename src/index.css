@@ -369,7 +369,9 @@ fieldset[disabled] .btn-custom.active {
   height: 48px;
   border-radius: 12px;
 }
-
+.cursor-pointer {
+  cursor: pointer;
+}
 .btnPrimary {
   background-color: #7126b5;
   color: white;

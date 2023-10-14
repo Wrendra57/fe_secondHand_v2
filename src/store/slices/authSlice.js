@@ -8,7 +8,7 @@ const persistConfig = {
 };
 
 const initialState = {
-  token: {},
+  token: "",
   email: "",
   user: {},
   searchUser: {},
@@ -37,7 +37,7 @@ export const slice = createSlice({
       state.user = {};
     },
     emptyToken: (state) => {
-      state.token = {};
+      state.token = "";
     },
     emptyEmail: (state) => {
       state.email = "";

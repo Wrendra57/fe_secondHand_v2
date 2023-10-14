@@ -21,6 +21,27 @@ const authApi = createApi({
       }),
       invalidatesTags: ["Auth"],
     }),
+    authentication: build.mutation({
+      query: ({ token }) => ({
+        url: `api/v1/user`,
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }),
+      invalidatesTags: ["Auth"],
+    }),
+    updateUser: build.mutation({
+      query: ({ body, token }) => ({
+        url: `api/v1/user/update`,
+        method: "POST",
+        body: body,
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }),
+      invalidatesTags: ["Auth"],
+    }),
     // verification: build.mutation({
     //   query: ({ body, otp }) => ({
     //     url: `api/v1/users/otp/${otp}`,
@@ -75,9 +96,9 @@ const authApi = createApi({
 
 export const {
   useRegisterMutation,
-  // useVerificationMutation,
+  useUpdateUserMutation,
   useLoginMutation,
-  // useAuthenticationMutation,
+  useAuthenticationMutation,
   // useSearchUsersMutation,
   // useResendOtpMutation,
   // useLoginMutation,
