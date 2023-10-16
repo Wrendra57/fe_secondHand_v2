@@ -42,55 +42,6 @@ const authApi = createApi({
       }),
       invalidatesTags: ["Auth"],
     }),
-    // verification: build.mutation({
-    //   query: ({ body, otp }) => ({
-    //     url: `api/v1/users/otp/${otp}`,
-    //     method: "POST",
-    //     body: body,
-    //   }),
-    //   invalidatesTags: ["Auth"],
-    // }),
-
-    // authentication: build.mutation({
-    //   query: ({ token }) => ({
-    //     url: `api/v1/users`,
-    //     method: "GET",
-    //     headers: {
-    //       authorization: `Bearer ${token}`,
-    //     },
-    //   }),
-    //   invalidatesTags: ["Auth"],
-    // }),
-    // searchUsers: build.mutation({
-    //   query: ({ token, nameSearch }) => ({
-    //     url: `api/v1/users/${nameSearch}`,
-    //     method: "GET",
-    //     headers: {
-    //       authorization: `Bearer ${token}`,
-    //     },
-    //   }),
-    //   invalidatesTags: ["Auth"],
-    // }),
-    // forgotPassword:
-    // changePassword: build.mutation({
-    //   query: (body) => ({
-    //     url: `api/forget-password/change-password`,
-    //     method: "POST",
-    //     body: body,
-    //   }),
-    //   invalidatesTags: ["Auth"],
-    // }),
-    // logout: build.mutation({
-    //   query: (token) => ({
-    //     url: `api/logout`,
-    //     method: "GET",
-    //     headers: {
-    //       authorization: `Bearer ${token}`,
-    //     },
-    //     responseHandler: "text/html",
-    //   }),
-    //   invalidatesTags: ["Auth"],
-    // }),
   }),
 });
 

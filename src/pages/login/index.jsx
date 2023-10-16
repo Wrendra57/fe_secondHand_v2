@@ -40,12 +40,10 @@ function LoginPage() {
       e.preventDefault();
       setError({});
       if (email === "") {
-        console.log("Please enter");
         setError((error) => ({ ...error, email: "email tidak boleh kosong" }));
         return;
       }
       if (password === "") {
-        console.log("Please enter");
         setError((error) => ({
           ...error,
           password: "password tidak boleh kosong",

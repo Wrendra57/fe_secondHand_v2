@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { persistStore } from "redux-persist";
 
 import authApi from "./apis/authentication";
+import productApi from "./apis/product";
 // import chatApi from "./apis/chat";
 // import transactionApi from "./apis/transaction";
 // import usersApi from "./apis/users";
@@ -11,6 +12,7 @@ import authApi from "./apis/authentication";
 // import bannerApi from "./apis/banner";
 
 import { authPersistReducer } from "./slices/authSlice";
+import { productPersistReducer } from "./slices/productSlice";
 // import { chatPersistReducer } from "./slices/chatSlice";
 // import { userPersistReducer } from "./slices/userSlice";
 // import { chatPersistReducer } from "./slices/chatSlice";
@@ -23,6 +25,7 @@ import { authPersistReducer } from "./slices/authSlice";
 export const store = configureStore({
   reducer: {
     [authApi.reducerPath]: authApi.reducer,
+    [productApi.reducerPath]: productApi.reducer,
     // [chatApi.reducerPath]: chatApi.reducer,
     // [usersApi.reducerPath]: usersApi.reducer,
     // [kosApi.reducerPath]: kosApi.reducer,
@@ -31,6 +34,7 @@ export const store = configureStore({
     // [transaksiApi.reducerPath]: transaksiApi.reducer,
     // [chatApi.reducerPath]: chatApi.reducer,
     auth: authPersistReducer,
+    product: productPersistReducer,
     // chat: chatPersistReducer,
     // 	user: userPersistReducer,
     // 	kos: kosPersistReducer,
@@ -45,6 +49,7 @@ export const store = configureStore({
       serializableCheck: false,
     }).concat([
       authApi.middleware,
+      productApi.middleware,
       // chatApi.middleware,
       //   usersApi.middleware,
       //   kosApi.middleware,

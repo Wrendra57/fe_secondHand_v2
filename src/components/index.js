@@ -1,3 +1,6 @@
 import Navbar from "./navbar";
 import Login from "./login";
-export { Navbar, Login };
+import CarouselSection from "./carousel";
+import CardLanding from "./cardLanding";
+import Footer from "./footer";
+export { Footer, CardLanding, CarouselSection, Navbar, Login };

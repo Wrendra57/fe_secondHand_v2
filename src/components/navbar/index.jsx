@@ -90,7 +90,7 @@ function NavBar() {
         bg="light"
         variant="light"
       >
-        <Container fluid>
+        <Container>
           <Navbar.Brand>
             <Link to={"/"}>
               <img src={logo} alt="" style={{ width: "130px" }} />
