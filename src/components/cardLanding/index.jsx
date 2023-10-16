@@ -8,7 +8,7 @@ function CardLanding(params) {
     <>
       <div key={item.id_product} className="col-md-4 col-xl-3 col-sm-12 mb-3">
         <Link
-          to={`/halamanproduk/${item.id_product}`}
+          to={`/product/${item.id_product}`}
           className="text-decoration-none"
           style={{ color: "black" }}
         >

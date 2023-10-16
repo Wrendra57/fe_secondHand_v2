@@ -14,16 +14,19 @@ import { Button, Spinner } from "react-bootstrap";
 import { useCreateProductMutation } from "../../../store/apis/product";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
+import { addProduct } from "../../../store/slices/productSlice";
+// import { render } from "react-dom";
 function JualProduk() {
   const navigate = useNavigate();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
   const token = useSelector((state) => state.auth.token);
+  const product = useSelector((state) => state.product.product);
   const [name, setName] = useState();
   const [price, setPrice] = useState(0);
   const [category, setCategory] = useState();
   const [description, setDescription] = useState();
-  const [stock, setStock] = useState(0);
+  const [stock, setStock] = useState();
   const [error, setError] = useState({});
   const [files, setFiles] = useState([]);
   const [previewPhoto, setPreviewPhoto] = useState([]);
@@ -72,11 +75,87 @@ function JualProduk() {
       navigate("/profile");
       return;
     }
+    if (product.hasOwnProperty("photoUrl")) {
+      setDescription(product.description);
+      setName(product.name);
+      setPrice(product.price);
+      setCategory(product.category);
+      setStock(product.stock);
+    }
+    // dispatch(addProduct({}));
   }, []);
+
+  const handlePreview = (e) => {
+    e.preventDefault();
+    setError({});
+    dispatch(addProduct({}));
+    // console.log(description);
+    if (name === "" || !name) {
+      setError((prev) => ({
+        ...prev,
+        name: "Nama Produk tidak boleh kosong",
+      }));
+      return;
+    }
+    if (price <= 0 || !price) {
+      setError((prev) => ({
+        ...prev,
+        price: "Harga produk tidak boleh kosong",
+      }));
+      return;
+    }
+    if (category === "" || !category) {
+      setError((prev) => ({
+        ...prev,
+        category: "Kategori produk tidak boleh kosong",
+      }));
+      return;
+    }
+    if (description === "" || !description) {
+      setError((prev) => ({
+        ...prev,
+        description: "Deskripsi produk tidak boleh kosong",
+      }));
+      return;
+    }
+    if (stock === "" || !stock || stock <= 0) {
+      setError((prev) => ({
+        ...prev,
+        stock: "Stock produk tidak boleh kosong",
+      }));
+      return;
+    }
+    if (files.length === 0 || files.length > 4) {
+      setError((prev) => ({
+        ...prev,
+        photo: "Foto produk minimal 1 dan maksimal 4",
+      }));
+      return;
+    }
+    if (previewPhoto.length === 0 || previewPhoto.length > 4) {
+      setError((prev) => ({
+        ...prev,
+        photo: "Foto produk minimal 1 dan maksimal 4",
+      }));
+      return;
+    }
+    const preview = {
+      photoUrl: previewPhoto,
+      name: name,
+      price: price,
+      category: category,
+      description: description,
+      stock: stock,
+      files: files,
+    };
+    dispatch(addProduct(preview));
+    navigate("/product/jual/preview");
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setError({});
-    console.log(description);
+    console.log(previewPhoto);
     if (name === "" || !name) {
       setError((prev) => ({
         ...prev,
@@ -200,14 +279,34 @@ function JualProduk() {
   };
 
   useEffect(() => {
+    let isCancel = false;
+    console.log(product);
+    console.log("files");
+    console.log(files);
     if (files.length === 0) {
       setPreviewPhoto([]);
       return;
     }
-    let objectUrl = URL.createObjectURL(files[files.length - 1]);
-    setPreviewPhoto((prev) => [...prev, objectUrl]);
-    return () => URL.revokeObjectURL(objectUrl);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      // setSelectedFile(file);
+      const { result } = e.target;
+      if (result && !isCancel) {
+        // setPreviewPhoto(result);
+        // console.log(result);
+        setPreviewPhoto((prev) => [...prev, result]);
+      }
+      console.log(result);
+      // setPreviewPhoto(reader.result);
+    };
+    reader.readAsDataURL(files[files.length - 1]);
+
+    return () => {
+      isCancel = true;
+      if (reader && reader.readyState === 1) {
+        reader.abort();
+      }
+    };
   }, [isTriger]);
 
   const deletePhoto = (param) => {
@@ -259,7 +358,7 @@ function JualProduk() {
               />
             </svg>
           </div>
-          <h2 className="flex-fill bg-danger text-center">Tambah Produk</h2>
+          <h2 className="flex-fill text-center">Tambah Produk</h2>
         </div>
         <form style={{ maxWidth: "800px" }} className="mx-auto">
           <div>
@@ -331,6 +430,7 @@ function JualProduk() {
                 theme="snow"
                 defaultValue={description}
                 onChange={(e) => setDescription(e)}
+                value={description}
                 // ref={(ref) => (formRef.current.deskripsi = ref)}
               />
               {error.hasOwnProperty("description") &&
@@ -362,7 +462,6 @@ function JualProduk() {
               <div>
                 <div className="row">
                   {previewPhoto?.map((item, index) => {
-                    console.log(index);
                     return (
                       <div className="col-md-3 " key={index}>
                         <div className="d-flex h-100 flex-column justify-content-start align-items-center ">
@@ -424,9 +523,17 @@ function JualProduk() {
             <div className="row">
               <div className="col">
                 <div className="mb-3">
-                  <button
+                  <Button
+                    variant="outline-info"
+                    className="buton-outline"
+                    disabled={isLoading}
+                    onClick={handlePreview}
+                  >
+                    Preview
+                  </Button>
+                  {/* <button
                     type="submit"
-                    className="btn"
+                    className="btn buton-outline"
                     disabled={isLoading}
                     style={{
                       width: "100%",
@@ -435,23 +542,19 @@ function JualProduk() {
                       color: "black",
                       borderColor: "#7126B5",
                     }}
+                    onClick={handlePreview}
                   >
                     Preview
-                  </button>
+                  </button> */}
                 </div>
               </div>
               <div className="col">
                 <div className="mb-3">
-                  <button
-                    type="button"
-                    onClick={(e) => handleSubmit(e)}
-                    className="btn btn-primary"
-                    style={{
-                      width: "100%",
-                      backgroundColor: "#7126B5",
-                      borderRadius: "16px",
-                    }}
+                  <Button
+                    variant="outline-info"
+                    className="buton-primary"
                     disabled={isLoading}
+                    onClick={(e) => handleSubmit(e)}
                   >
                     {isLoading ? (
                       <>
@@ -469,7 +572,7 @@ function JualProduk() {
                     ) : (
                       <>Terbitkan</>
                     )}
-                  </button>
+                  </Button>
                 </div>
               </div>
             </div>

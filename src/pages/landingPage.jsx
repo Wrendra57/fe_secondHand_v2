@@ -6,8 +6,8 @@ import { Button, Container } from "react-bootstrap";
 import { CardLanding, CarouselSection, Footer, Navbar } from "../components";
 import { FiPlus, FiSearch } from "react-icons/fi";
 import { useGetListProductMutation } from "../store/apis/product";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { addListProduct } from "../store/slices/productSlice";
 import { useNavigate } from "react-router-dom";
@@ -16,7 +16,8 @@ function landingPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const kategori = ["Semua", "Pakaian", "Sepatu"];
-  const listProduct = useSelector((state) => state.product.listProduct);
+  // const listProduct = useSelector((state) => state.product.listProduct);
+  const [product, setProduct] = useState([]);
   const [
     getListProductHit,
     {
@@ -35,6 +36,7 @@ function landingPage() {
     if (isSuccess) {
       // dispatch(addUser(dataAuth.data));
       dispatch(addListProduct(dataListProduct.data));
+      setProduct(dataListProduct.data);
     }
 
     if (isError) {
@@ -78,7 +80,7 @@ function landingPage() {
         </div>
         <div id="card">
           <div className="row">
-            {listProduct?.map((item, index) => {
+            {product?.map((item, index) => {
               // console.log(item);
               return <CardLanding item={item} key={index} />;
             })}

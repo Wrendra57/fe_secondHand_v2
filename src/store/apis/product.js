@@ -23,9 +23,19 @@ const productApi = createApi({
       }),
       invalidatesTags: ["Product"],
     }),
+    getProduct: build.mutation({
+      query: ({ id }) => ({
+        url: `api/v1/product/${id}`,
+        method: "GET",
+      }),
+      invalidatesTags: ["Product"],
+    }),
   }),
 });
-export const { useGetListProductMutation, useCreateProductMutation } =
-  productApi;
+export const {
+  useGetListProductMutation,
+  useCreateProductMutation,
+  useGetProductMutation,
+} = productApi;
 
 export default productApi;

@@ -4,6 +4,7 @@ import RegisterPage from "./register";
 import Profile from "./profile";
 import JualProduk from "./product/jualProduct";
 import DetailProduct from "./product/:uuid";
+import Preview from "./product/preview";
 export {
   LandingPage,
   LoginPage,
@@ -11,4 +12,5 @@ export {
   Profile,
   JualProduk,
   DetailProduct,
+  Preview,
 };

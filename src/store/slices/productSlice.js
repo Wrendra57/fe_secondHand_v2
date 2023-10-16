@@ -9,6 +9,7 @@ const persistConfig = {
 
 const initialState = {
   listProduct: {},
+  product: {},
 };
 export const slice = createSlice({
   name: "product",
@@ -17,9 +18,12 @@ export const slice = createSlice({
     addListProduct: (state, { payload }) => {
       state.listProduct = payload;
     },
+    addProduct: (state, { payload }) => {
+      state.product = payload;
+    },
   },
 });
-export const { addListProduct } = slice.actions;
+export const { addListProduct, addProduct } = slice.actions;
 
 export const productPersistReducer = persistReducer(
   persistConfig,

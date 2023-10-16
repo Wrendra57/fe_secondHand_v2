@@ -468,3 +468,41 @@ background-color: #E2D4F0;
     overflow-y: auto;
   }
 }
+
+.buton-outline {
+    width: 100% !important;
+    background-color: white !important;
+    /* border-radius: 16px !important; */
+    color: black !important;
+    border-color: #7126B5 !important ;
+}
+
+.buton-outline:hover {
+    /* width: 100% !important; */
+    background-color: #7126B5 !important;
+    /* border-radius: 16px !important; */
+    color: white !important;
+    border-color: #7126B5 !important ;
+}
+.buton-outline:active {
+    border-color: white !important ;
+}
+
+.buton-primary {
+    width: 100% !important;
+    background-color: #7126B5 !important;
+    
+    color: white !important;
+    border-color: #7126B5 !important ;
+}
+
+.buton-primary:hover {
+    /* width: 100% !important; */
+    background-color: white !important;
+    /* border-radius: 16px !important; */
+    color: black !important;
+    border-color: #7126B5 !important ;
+}
+.buton-primary:active {
+    border-color: #7126B5 !important ;
+}
