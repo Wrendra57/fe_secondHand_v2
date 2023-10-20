@@ -5,6 +5,7 @@ import Profile from "./profile";
 import JualProduk from "./product/jualProduct";
 import DetailProduct from "./product/:uuid";
 import Preview from "./product/preview";
+import DaftarJual from "./product/dashboard/daftarJualSaya";
 export {
   LandingPage,
   LoginPage,
@@ -13,4 +14,5 @@ export {
   JualProduk,
   DetailProduct,
   Preview,
+  DaftarJual,
 };

@@ -105,7 +105,7 @@ function NavBar() {
               {user.hasOwnProperty("uuid") ? (
                 <>
                   <Nav.Link>
-                    <Link to={"/daftarjual"}>
+                    <Link to={"/dashboard/daftar-jual"}>
                       <button
                         type="button"
                         className="btn btn-sm nav-link text-dark rounded-12px active"

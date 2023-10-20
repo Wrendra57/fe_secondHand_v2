@@ -1,9 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const productApi = createApi({
-  reducerPath: "authApi",
+  reducerPath: "produtApi",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8000/" }),
-  tagTypes: ["Auth"],
+  tagTypes: ["Product"],
   endpoints: (build) => ({
     getListProduct: build.mutation({
       query: ({ limit, offset }) => ({
@@ -30,12 +30,23 @@ const productApi = createApi({
       }),
       invalidatesTags: ["Product"],
     }),
+    getMyProduct: build.mutation({
+      query: ({ token, offset }) => ({
+        url: `api/v1/myproduct/${offset}`,
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }),
+      invalidatesTags: ["Product"],
+    }),
   }),
 });
 export const {
   useGetListProductMutation,
   useCreateProductMutation,
   useGetProductMutation,
+  useGetMyProductMutation,
 } = productApi;
 
 export default productApi;

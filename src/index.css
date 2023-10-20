@@ -96,7 +96,7 @@ body {
 .boxShadow {
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
   border-radius: 16px;
-  padding: 20px;
+  /* padding: 20px; */
 }
 
 .kategoriActive {
@@ -506,3 +506,20 @@ background-color: #E2D4F0;
 .buton-primary:active {
     border-color: #7126B5 !important ;
 }
+
+.button-sidebar {
+  cursor: pointer;
+}
+.button-sidebar:hover {
+  color: #7126B5;
+}
+.button-sidebar:active {
+  color: #7126B5;
+}
+
+.skeleton {
+				background: linear-gradient(-45deg, #c4c4c4, #616161, #c4c4c4);
+				background-size: 400% 400%;
+				animation: backgroundanimation 1s infinite ease;
+				border: none;
+			}

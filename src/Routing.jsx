@@ -1,6 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
+  DaftarJual,
   DetailProduct,
   JualProduk,
   LandingPage,
@@ -23,6 +24,7 @@ function Routing() {
         <Route path="/product/jual" element={<JualProduk />} />
         <Route path="/product/:id" element={<DetailProduct />} />
         <Route path="/product/jual/preview" element={<Preview />} />
+        <Route path="/dashboard/daftar-jual" element={<DaftarJual />} />
       </Routes>
     </BrowserRouter>
   );
