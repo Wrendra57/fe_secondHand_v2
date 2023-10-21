@@ -17,7 +17,7 @@ function DaftarJual() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
   const token = useSelector((state) => state.auth.token);
-  const [offset, setOffset] = useState(1);
+  const [offset] = useState(1);
   const [myProducts, setMyProducts] = useState([]);
   const [
     getListProductHit,
@@ -87,7 +87,7 @@ function DaftarJual() {
               <Button
                 variant={"outline-info"}
                 className=" me-2 ms-auto"
-                onClick={() => navigate("/infoprofil")}
+                onClick={() => navigate("/profile")}
               >
                 Edit
               </Button>
@@ -96,7 +96,7 @@ function DaftarJual() {
         </Row>
         <Row className="mt-4">
           <Col lg={3} md={12} xs={12}>
-            <Sidebar />
+            <Sidebar activeButton={"daftar-jual"} />
           </Col>
           <Col lg={9} md={12} xs={12}>
             <div className="row">

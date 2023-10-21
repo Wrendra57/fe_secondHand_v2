@@ -26,8 +26,33 @@ const orderApi = createApi({
       }),
       invalidatesTags: ["Order"],
     }),
+    listMyOrder: build.mutation({
+      query: ({ token }) => ({
+        url: `api/v1/order/myOrder`,
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }),
+      invalidatesTags: ["Order"],
+    }),
+    listMyOffer: build.mutation({
+      query: ({ token }) => ({
+        url: `api/v1/order/myOffer`,
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }),
+      invalidatesTags: ["Order"],
+    }),
   }),
 });
-export const { useCreateOrderMutation, useCheckStatusOrderMutation } = orderApi;
+export const {
+  useCreateOrderMutation,
+  useCheckStatusOrderMutation,
+  useListMyOrderMutation,
+  useListMyOfferMutation,
+} = orderApi;
 
 export default orderApi;

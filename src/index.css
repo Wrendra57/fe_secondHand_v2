@@ -3,7 +3,9 @@
   margin: 0;
   box-sizing: border-box;
 }
-
+h1,h2,h3,h4,h5,h6,p {
+  margin-bottom: 0px !important
+}
 body {
   background: whitesmoke;
   scroll-behavior: smooth;
@@ -509,6 +511,11 @@ background-color: #E2D4F0;
 
 .button-sidebar {
   cursor: pointer;
+  color: black;
+}
+.button-sidebar-hover {
+  /* cursor: pointer; */
+  color: #7126B5;
 }
 .button-sidebar:hover {
   color: #7126B5;

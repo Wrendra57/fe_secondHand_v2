@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable no-prototype-builtins */
 import { Link } from "react-router-dom";
 import logo from "../../assets/SecondHand1.png";
@@ -17,6 +19,9 @@ import { useAuthenticationMutation } from "../../store/apis/authentication";
 import { addUser, emptyToken, emptyUser } from "../../store/slices/authSlice";
 import Swal from "sweetalert2";
 // import { useEffect } from "react";
+import io from "socket.io-client";
+export const socket = io.connect("http://localhost:8000");
+
 function NavBar() {
   const dispatch = useDispatch();
 
@@ -28,7 +33,7 @@ function NavBar() {
     { isLoading, isError, error: errorAuth, isSuccess, data: dataAuth },
   ] = useAuthenticationMutation();
   useEffect(() => {
-    console.log(token);
+    console.log("token");
     if (token !== "") {
       // console.log(user.hasOwnProperty("uuid"));
       // // eslint-disable-next-line no-prototype-builtins
@@ -64,6 +69,14 @@ function NavBar() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading]);
 
+  useEffect(() => {
+    if (user.hasOwnProperty("uuid")) {
+      console.log("join");
+      socket.emit("subscribe-notification", { uuid: user.uuid });
+      console.log(socket.id);
+    }
+    console.log("user");
+  }, [user]);
   const handleLogout = async (e) => {
     try {
       e.preventDefault();

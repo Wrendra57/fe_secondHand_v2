@@ -6,6 +6,9 @@ import JualProduk from "./product/jualProduct";
 import DetailProduct from "./product/:uuid";
 import Preview from "./product/preview";
 import DaftarJual from "./product/dashboard/daftarJualSaya";
+import MyOrder from "./product/dashboard/daftarMyOrder";
+import ProductOffered from "./product/dashboard/productOffered";
+import OrderByID from "./order/:id";
 export {
   LandingPage,
   LoginPage,
@@ -15,4 +18,7 @@ export {
   DetailProduct,
   Preview,
   DaftarJual,
+  MyOrder,
+  ProductOffered,
+  OrderByID,
 };

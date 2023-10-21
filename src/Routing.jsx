@@ -6,7 +6,10 @@ import {
   JualProduk,
   LandingPage,
   LoginPage,
+  MyOrder,
+  OrderByID,
   Preview,
+  ProductOffered,
   Profile,
   RegisterPage,
 } from "./pages";
@@ -25,6 +28,9 @@ function Routing() {
         <Route path="/product/:id" element={<DetailProduct />} />
         <Route path="/product/jual/preview" element={<Preview />} />
         <Route path="/dashboard/daftar-jual" element={<DaftarJual />} />
+        <Route path="/dashboard/my-order" element={<MyOrder />} />
+        <Route path="/dashboard/my-offer" element={<ProductOffered />} />
+        <Route path="/order/:id" element={<OrderByID />} />
       </Routes>
     </BrowserRouter>
   );
